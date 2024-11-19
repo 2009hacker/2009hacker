@@ -1,0 +1,189 @@
+<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Settings</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="settings-container">
+    <!-- Sidebar Navigation for Settings -->
+    <div class="settings-sidebar">
+      <ul class="settings-menu">
+        <li><a href="#account" class="menu-item">Account</a></li>
+        <li><a href="#privacy" class="menu-item">Privacy</a></li>
+        <li><a href="#notifications" class="menu-item">Notifications</a></li>
+        <li><a href="#appearance" class="menu-item">Appearance</a></li>
+        <li><a href="#help" class="menu-item">Help</a></li>
+      </ul>
+    </div>
+
+    <!-- Settings Content Area -->
+    <div class="settings-content">
+      <!-- Account Settings -->
+      <div class="tab-content" id="account">
+        <h2>Account Settings</h2>
+        <label for="username">Username:</label>
+        <input type="text" id="username" placeholder="Enter your username">
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="Enter your email">
+      </div>
+
+      <!-- Privacy Settings -->
+      <div class="tab-content" id="privacy">
+        <h2>Privacy Settings</h2>
+        <label for="visibility">Profile Visibility:</label>
+        <select id="visibility">
+          <option value="public">Public</option>
+          <option value="private">Private</option>
+        </select>
+      </div>
+
+      <!-- Notification Settings -->
+      <div class="tab-content" id="notifications">
+        <h2>Notification Settings</h2>
+        <label for="email-notifications">Email Notifications:</label>
+        <input type="checkbox" id="email-notifications" checked>
+        <label for="push-notifications">Push Notifications:</label>
+        <input type="checkbox" id="push-notifications" checked>
+      </div>
+
+      <!-- Appearance Settings -->
+      <div class="tab-content" id="appearance">
+        <h2>Appearance</h2>
+        <label for="theme">Theme:</label>
+        <select id="theme">
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+      </div>
+
+      <!-- Help Settings -->
+      <div class="tab-content" id="help">
+        <h2>Help</h2>
+        <p>If you need assistance, please visit our <a href="#">Help Center</a>.</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+
+css
+/* Basic reset and global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  height: 100vh;
+}
+
+.settings-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.settings-sidebar {
+  width: 220px;
+  background-color: #fff;
+  border-right: 2px solid #ddd;
+  padding-top: 20px;
+}
+
+.settings-menu {
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu-item {
+  display: block;
+  padding: 15px;
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+}
+
+.menu-item:hover {
+  background-color: #f1f1f1;
+  color: #0071e3;
+}
+
+.settings-content {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: #fff;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content h2 {
+  margin-bottom: 20px;
+}
+
+.tab-content input,
+.tab-content select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.tab-content label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Display the active tab content */
+.tab-content.active {
+  display: block;
+}
+
+/* Add some custom styling for checkboxes */
+input[type="checkbox"] {
+  width: auto;
+  margin-right: 10px;
+}
+
+input[type="checkbox"]:checked {
+  background-color: #0071e3;
+}
+
+javascript
+document.addEventListener("DOMContentLoaded", () => {
+  // Select all menu items
+  const menuItems = document.querySelectorAll(".menu-item");
+  
+  // Select all tab contents
+  const tabContents = document.querySelectorAll(".tab-content");
+
+  menuItems.forEach(item => {
+    item.addEventListener("click", (event) => {
+      // Remove active class from all tab contents
+      tabContents.forEach(tab => tab.classList.remove("active"));
+      
+      // Hide all tabs
+      tabContents.forEach(tab => tab.style.display = "none");
+      
+      // Show the clicked tab
+      const activeTab = document.querySelector(event.target.getAttribute("href"));
+      activeTab.style.display = "block";
+      
+      // Add active class to the clicked tab
+      activeTab.classList.add("active");
+    });
+  });
+});
